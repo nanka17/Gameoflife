@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat,eat, lava,dem) {
+function generator(matLen, gr, grEat,eat, lava,dem, water,) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -41,12 +41,26 @@ function generator(matLen, gr, grEat,eat, lava,dem) {
             matrix[x][y] = 5;
         }
     }
+    for (let i = 0; i < water; i++) {
+        let x = Math.floor(Math.random() * matLen);
+        let y = Math.floor(Math.random() * matLen);
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 6;
+        }
+    }
+    for (let i = 0; i < bomb; i++) {
+        let x = Math.floor(Math.random() * matLen);
+        let y = Math.floor(Math.random() * matLen);
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 7;
+        }
+    }
     return matrix;
 }
 
 let side = 20;
 
-let matrix = generator(15, 50, 5, 10, 20);
+
 
 
 grassArr = []
@@ -59,8 +73,13 @@ lavaArr=[]
 
 demonArr=[]
 
+waterArr=[]
+
+bombArr=[]
+
 
 function setup() {
+    matrix = generator(15, 50, 5, 10, 20, 20, 30, 10);
     frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
@@ -77,7 +96,7 @@ function setup() {
             }
             else if (matrix[y][x] == 3) {
                 var ea = new Eater(x, y, 3)
-               eaterArr.push(ea)
+                eaterArr.push(ea)
 
             }
             else if (matrix[y][x] == 4) {
@@ -90,9 +109,19 @@ function setup() {
                 demonArr.push(dm)
 
             }
-            else if (matrix[y][x] == 8) {
+            else if (matrix[y][x] == 6) {
+                var wa = new water(x, y, 6)
+                waterArr.push(wa)
 
             }
+            else if (matrix[y][x] == 7) {
+                var bo = new bomb(x, y, 7)
+                bombArr.push(bo)
+
+            }
+        
+
+            
         }
     }
     console.log(grassArr);
@@ -123,6 +152,12 @@ function draw() {
             else if (matrix[y][x] == 5) {
                 fill("black")
             }
+            else if (matrix[y][x] == 6) {
+                fill("blue")
+            }
+            else if (matrix[y][x] == 7) {
+                fill("purple")
+            }
 
             rect(x * side, y * side, side, side);
 
@@ -150,6 +185,15 @@ function draw() {
         demonArr[a].eat()
 
     }
+    for(var a in waterArr){
+        waterArr[a].mul()
+        
+    }
+    for(var a in bombArr){
+            bombArr[a].die()
+    
+        } 
+
 
 }
 
