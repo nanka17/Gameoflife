@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat,eat, lava,dem, water,) {
+function generator(matLen, gr, grEat,eat, lava,dem, water,bomb) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -79,7 +79,7 @@ bombArr=[]
 
 
 function setup() {
-    matrix = generator(15, 50, 5, 10, 20, 20, 30, 10);
+    matrix = generator(15, 50, 5, 10, 20, 20, 0, 0);
     frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');

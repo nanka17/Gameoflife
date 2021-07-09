@@ -67,8 +67,8 @@ class Demon extends LivingCreature {
     eat() {
         var emptyCells = this.chooseCell(3)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        var emptyCells = this.chooseCell(7)
-        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        // var emptyCells = this.chooseCell(7)
+        // var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
 
             this.energy++
