@@ -26,7 +26,7 @@ class Demon extends LivingCreature {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        console.log(emptyCells)
+        
 
         if (newCell && this.multiply >= 8) {
             var newX = newCell[0];
@@ -67,8 +67,8 @@ class Demon extends LivingCreature {
     eat() {
         var emptyCells = this.chooseCell(3)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        // var emptyCells = this.chooseCell(7)
-        // var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        var emptyCells = this.chooseCell(6)
+        var newCell1 = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
 
             this.energy++
@@ -84,15 +84,31 @@ class Demon extends LivingCreature {
                     break;
                 }
             }
-
-
         }
+        if (newCell1) {
+
+            this.energy-=50
+            var newX = newCell1[0];
+            var newY = newCell1[1];
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+            for (var i in eaterArr) {
+                if (newX == eaterArr[i].x && newY == eaterArr[i].y) {
+                    eaterArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        
         else {
             this.move()
         }
 
 
     }
+
     die() {
         matrix[this.y][this.x] = 0
         for (var i in demonArr) {

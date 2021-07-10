@@ -24,7 +24,7 @@ class Lava extends LivingCreature {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        console.log(emptyCells)
+        
 
         if (newCell && this.multiply >= 8) {
             var newX = newCell[0];

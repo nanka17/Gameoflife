@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat,eat, lava,dem, water,bomb) {
+function generator(matLen, gr, grEat,eat, lava,dem, xot,bomb) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -41,7 +41,7 @@ function generator(matLen, gr, grEat,eat, lava,dem, water,bomb) {
             matrix[x][y] = 5;
         }
     }
-    for (let i = 0; i < water; i++) {
+    for (let i = 0; i < xot; i++) {
         let x = Math.floor(Math.random() * matLen);
         let y = Math.floor(Math.random() * matLen);
         if (matrix[x][y] == 0) {
@@ -73,13 +73,14 @@ lavaArr=[]
 
 demonArr=[]
 
-waterArr=[]
+xotArr=[]
 
 bombArr=[]
 
 
 function setup() {
-    matrix = generator(15, 50, 5, 10, 20, 20, 0, 0);
+    matrix = generator(30, 50, 30, 20, 20, 20, 10, 2);
+   
     frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
@@ -110,8 +111,8 @@ function setup() {
 
             }
             else if (matrix[y][x] == 6) {
-                var wa = new water(x, y, 6)
-                waterArr.push(wa)
+                var xt = new xot(x, y, 6)
+                xotArr.push(xt)
 
             }
             else if (matrix[y][x] == 7) {
@@ -124,7 +125,7 @@ function setup() {
             
         }
     }
-    console.log(grassArr);
+   
 
 
 }
@@ -153,7 +154,7 @@ function draw() {
                 fill("black")
             }
             else if (matrix[y][x] == 6) {
-                fill("blue")
+                fill("lime")
             }
             else if (matrix[y][x] == 7) {
                 fill("purple")
@@ -169,11 +170,12 @@ function draw() {
         grassArr[i].mul();
     }
     for (var a in grassEaterArr) {
-        grassEaterArr[a].mul();
         grassEaterArr[a].eat()
+       
+      
     }
     for(var a in eaterArr){
-        eaterArr[a].mul()
+        eaterArr[a].move()
         eaterArr[a].eat()
 
     }
@@ -185,8 +187,10 @@ function draw() {
         demonArr[a].eat()
 
     }
-    for(var a in waterArr){
-        waterArr[a].mul()
+    for(var a in xotArr){
+        xotArr[a].mul()
+        
+        
         
     }
     for(var a in bombArr){

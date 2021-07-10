@@ -25,7 +25,7 @@ class Eater extends LivingCreature {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        console.log(emptyCells)
+        
 
         if (newCell && this.multiply >= 8) {
             var newX = newCell[0];
@@ -64,6 +64,7 @@ class Eater extends LivingCreature {
     eat() {
         var emptyCells = this.chooseCell(2)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        
         if (newCell) {
 
             this.energy++
@@ -80,15 +81,14 @@ class Eater extends LivingCreature {
                 }
             }
 
-
         }
         else {
             this.move()
         }
-
     }
+
     die() {
-        matrix[this.y][this.x] = 0
+         matrix[this.y][this.x] = 0
         for (var i in eaterArr) {
             if (this.x == eaterArr[i].x && this.y == eaterArr[i].y) {
                 eaterArr.splice(i, 1);

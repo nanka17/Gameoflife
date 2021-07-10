@@ -1,4 +1,4 @@
-class water extends LivingCreature {
+class xot extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index)
     }
@@ -7,14 +7,14 @@ class water extends LivingCreature {
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
 
-        console.log(emptyCells);
+       
         if (newCell && this.multiply >= 8) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = 1;
+            matrix[newY][newX] = 6;
 
-            var newGrass = new Grass(newX, newY, 1);
-            grassArr.push(newGrass);
+            var newxot = new xot(newX, newY, 6);
+            xotArr.push(newxot);
             this.multiply = 0;
         }
     }
