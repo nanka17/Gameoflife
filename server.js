@@ -146,7 +146,7 @@ function generator(matLen, gr, grEat,eat, lava,dem, xt, bomb) {
     }
     return matrix;
 }
-matrix = generator(30, 50, 20, 3, 20 , 2, 10, 6);   
+matrix = generator(30, 50, 10, 3, 20 , 10, 30, 6);   
 console.log(matrix);
 
 io.sockets.emit('send matrix', matrix)
@@ -166,10 +166,7 @@ function game() {
 
     }
     for (var a in eaterArr) {
-       eaterArr[a].mul() 
        eaterArr[a].eat()
-       
-        
         
     }
     for (var a in lavaArr) {
