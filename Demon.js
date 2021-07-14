@@ -70,8 +70,8 @@ module.exports = class Demon extends LivingCreature {
     eat() {
         var emptyCells = this.chooseCell(3)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        var emptyCells = this.chooseCell(6)
-        var newCell1 = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        var emptyCells1 = this.chooseCell(6)
+        var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
 
             this.energy++
@@ -90,7 +90,7 @@ module.exports = class Demon extends LivingCreature {
         }
         if (newCell1) {
 
-            this.energy-=50
+            // this.energy=-50
             var newX = newCell1[0];
             var newY = newCell1[1];
             matrix[newY][newX] = matrix[this.y][this.x]
@@ -103,6 +103,7 @@ module.exports = class Demon extends LivingCreature {
                     break;
                 }
             }
+            this.die()
         }
         
         else {
