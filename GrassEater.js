@@ -3,7 +3,7 @@ let LivingCreature = require('./class.js')
 module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
         super(x, y)
-        this.energy = 8;
+        this.energy = 5;
     }
     getNewCoordinates() {
         this.directions = [
@@ -67,6 +67,8 @@ module.exports = class GrassEater extends LivingCreature {
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         var emptyCells1 = this.chooseCell(7)
         var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells.length)]
+        var emptyCells2 = this.chooseCell(6)
+        var newCell2 = emptyCells2[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
 
             this.energy++
@@ -85,20 +87,38 @@ module.exports = class GrassEater extends LivingCreature {
         }
              else if (newCell1) {
 
-                this.energy -= 50
                 var newX = newCell1[0];
                 var newY = newCell1[1];
                 matrix[newY][newX] = matrix[this.y][this.x]
                 matrix[this.y][this.x] = 0
                 this.x = newX
                 this.y = newY
-                for (var i in grassArr) {
-                    if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                        grassArr.splice(i, 1);
+                for (var i in bombArr) {
+                    if (newX == bombArr[i].x && newY == bombArr[i].y) {
+                        bombArr.splice(i, 1);
                         break;
                     }
                 }
+                this.die()
 
+
+
+            }
+            else if (newCell2) {
+
+                var newX = newCell2[0];
+                var newY = newCell2[1];
+                matrix[newY][newX] = matrix[this.y][this.x]
+                matrix[this.y][this.x] = 0
+                this.x = newX
+                this.y = newY
+                for (var i in xotArr) {
+                    if (newX == xotArr[i].x && newY == xotArr[i].y) {
+                        xotArr.splice(i, 1);
+                        break;
+                    }
+                }
+                this.die()
 
 
             }
