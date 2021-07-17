@@ -2,6 +2,8 @@ var express = require("express")
 var app = express()
 var server = require("http").Server(app)
 var io = require("socket.io")(server)
+var fs =require ('fs')
+
 
 app.use(express.static('.'))
 
@@ -146,11 +148,17 @@ function generator(matLen, gr, grEat,eat, lava,dem, xt, bomb) {
     }
     return matrix;
 }
-matrix = generator(30, 50, 10, 3, 20 , 10, 30, 6);   
-console.log(matrix);
+matrix = generator(30, 50, 5, 4, 20 , 10, 30, 6);   
+
 
 io.sockets.emit('send matrix', matrix)
-
+io.sockets.emit('send grass', grassArr)
+io.sockets.emit('send grassEater', grassEaterArr)
+io.sockets.emit('send eater', eaterArr)
+io.sockets.emit('send demon', demonArr)
+io.sockets.emit('send lava', lavaArr)
+io.sockets.emit('send xot', xotArr)
+io.sockets.emit('send bomb', bombArr)
 
 function game() {
     for (var i in grassArr) {
@@ -159,10 +167,6 @@ function game() {
     for (var a in grassEaterArr) {
         grassEaterArr[a].mul()
         grassEaterArr[a].eat()
-
-        
-        
-
 
     }
     for (var a in eaterArr) {
@@ -189,6 +193,22 @@ function game() {
 
     }
     io.sockets.emit("send matrix", matrix)
+   
+    io.sockets.emit('send grass', grassArr)
+
+    io.sockets.emit('send grassEater', grassEaterArr)
+
+    io.sockets.emit('send eater', eaterArr)
+
+    io.sockets.emit('send demon', demonArr)
+
+    io.sockets.emit('send lava', lavaArr)
+
+    io.sockets.emit('send xot', xotArr)
+
+    io.sockets.emit('send bomb', bombArr)
+
+
 
 }
 
@@ -200,3 +220,5 @@ io.on('connection', function (socket) {
     createObject(matrix)
 
 })
+
+// fs.writeFileSync("statistics.txt", )

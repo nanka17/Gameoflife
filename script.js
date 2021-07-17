@@ -3,7 +3,7 @@ var socket = io()
 var side = 30
 
 function setup() {
-    createCanvas(30 * side, 30 * side);
+    createCanvas(20 * side, 20 * side);
     background('#acacac');
     
 }
@@ -51,10 +51,42 @@ function nkarel(matrix) {
 
         }
     }
+   
+}
+function logGrass(a){
+    console.log(a.length)
+
+} 
+function logGrassEater(a){
+        console.log(a.length)
+}
+function logEater(a){
+    console.log(a.length)
+}
+function logDemon(a){
+    console.log(a.length)
+}
+function logLava(a){
+    console.log(a.length)
+}
+function logXot(a){
+    console.log(a.length)
+}
+function logBomb(a){
+    console.log(a.length)
 }
 
+
 setInterval(
-    function() {
+    function() { 
+        socket.on('send grass', logGrass)
+        socket.on('send grassEater', logGrassEater)
+        socket.on('send eater', logEater)
+        socket.on('send demon', logDemon)
+        socket.on('send lava', logLava)
+        socket.on('send xot', logXot)
+        socket.on('send bomb', logBomb)
         socket.on('send matrix', nkarel)
     }, 1000
 )
+

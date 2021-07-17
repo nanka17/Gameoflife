@@ -105,7 +105,7 @@ module.exports = class GrassEater extends LivingCreature {
 
             }
             else if (newCell2) {
-
+                // this.energy -=50
                 var newX = newCell2[0];
                 var newY = newCell2[1];
                 matrix[newY][newX] = matrix[this.y][this.x]
