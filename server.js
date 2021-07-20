@@ -2,7 +2,7 @@ var express = require("express")
 var app = express()
 var server = require("http").Server(app)
 var io = require("socket.io")(server)
-var fs =require ('fs')
+var fs = require('fs')
 
 
 app.use(express.static('.'))
@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 })
 server.listen(3000)
 
-matrix =[]
+matrix = []
 
 grassArr = []
 
@@ -41,9 +41,9 @@ bomb = require("./bomb")
 
 
 function createObject(matrix) {
-    
+
     for (var y = 0; y < matrix.length; ++y) {
-        
+
         for (var x = 0; x < matrix[y].length; ++x) {
             if (matrix[y][x] == 1) {
                 var gr = new Grass(x, y, 1);
@@ -80,16 +80,16 @@ function createObject(matrix) {
 
             }
 
-         
+
             io.sockets.emit('send matrix', matrix)
-            
+
         }
-      
-        
+
+
     }
 }
 
-function generator(matLen, gr, grEat,eat, lava,dem, xt, bomb) {
+function generator(matLen, gr, grEat, eat, lava, dem, xt, bomb) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -148,8 +148,8 @@ function generator(matLen, gr, grEat,eat, lava,dem, xt, bomb) {
     }
     return matrix;
 }
-matrix = generator(30, 50, 5, 4, 20 , 10, 30, 6);   
 
+matrix = generator(30, 50, 5, 4, 20, 10, 30, 6)
 
 io.sockets.emit('send matrix', matrix)
 io.sockets.emit('send grass', grassArr)
@@ -170,8 +170,8 @@ function game() {
 
     }
     for (var a in eaterArr) {
-       eaterArr[a].eat()
-        
+        eaterArr[a].eat()
+
     }
     for (var a in lavaArr) {
 
@@ -179,7 +179,7 @@ function game() {
     }
     for (var a in demonArr) {
         demonArr[a].eat()
-        
+
 
     }
     for (var a in xotArr) {
@@ -193,7 +193,7 @@ function game() {
 
     }
     io.sockets.emit("send matrix", matrix)
-   
+
     io.sockets.emit('send grass', grassArr)
 
     io.sockets.emit('send grassEater', grassEaterArr)
@@ -212,13 +212,40 @@ function game() {
 
 }
 
+var statistics = {}
+
+setInterval(function () {
+    statistics.grass = grassArr.length
+    statistics.grassEater = grassEaterArr.length
+    statistics.eater = eaterArr.length
+    statistics.demon = demonArr.length
+    statistics.lava = lavaArr.length
+    statistics.xot = xotArr.length
+    statistics.bomb = bombArr.length
+
+    fs.writeFileSync("statistics.json",
+        JSON.stringify(statistics))
+
+}, 1000
+)
+
 
 
 setInterval(game, 1000)
 
-io.on('connection', function (socket) {
-    createObject(matrix)
 
-})
 
-// fs.writeFileSync("statistics.txt", )
+let flag = true
+
+    io.on('connection', function (socket) {
+       if (flag) { 
+           createObject(matrix)
+
+            flag = false
+        }
+       
+        
+    })
+
+
+

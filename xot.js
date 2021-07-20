@@ -9,7 +9,7 @@ module.exports = class xot extends LivingCreature {
         var emptyCells = this.chooseCell(0);
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
-       
+
         if (newCell && this.multiply >= 5) {
             var newX = newCell[0];
             var newY = newCell[1];

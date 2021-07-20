@@ -26,7 +26,7 @@ module.exports = class Lava extends LivingCreature {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        
+
 
         if (newCell && this.multiply >= 8) {
             var newX = newCell[0];

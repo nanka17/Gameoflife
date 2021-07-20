@@ -85,48 +85,48 @@ module.exports = class GrassEater extends LivingCreature {
                 }
             }
         }
-             else if (newCell1) {
+        else if (newCell1) {
 
-                var newX = newCell1[0];
-                var newY = newCell1[1];
-                matrix[newY][newX] = matrix[this.y][this.x]
-                matrix[this.y][this.x] = 0
-                this.x = newX
-                this.y = newY
-                for (var i in bombArr) {
-                    if (newX == bombArr[i].x && newY == bombArr[i].y) {
-                        bombArr.splice(i, 1);
-                        break;
-                    }
+            var newX = newCell1[0];
+            var newY = newCell1[1];
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+            for (var i in bombArr) {
+                if (newX == bombArr[i].x && newY == bombArr[i].y) {
+                    bombArr.splice(i, 1);
+                    break;
                 }
-                this.die()
-
-
-
             }
-            else if (newCell2) {
-                // this.energy -=50
-                var newX = newCell2[0];
-                var newY = newCell2[1];
-                matrix[newY][newX] = matrix[this.y][this.x]
-                matrix[this.y][this.x] = 0
-                this.x = newX
-                this.y = newY
-                for (var i in xotArr) {
-                    if (newX == xotArr[i].x && newY == xotArr[i].y) {
-                        xotArr.splice(i, 1);
-                        break;
-                    }
+            this.die()
+
+
+
+        }
+        else if (newCell2) {
+            // this.energy -=50
+            var newX = newCell2[0];
+            var newY = newCell2[1];
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+            for (var i in xotArr) {
+                if (newX == xotArr[i].x && newY == xotArr[i].y) {
+                    xotArr.splice(i, 1);
+                    break;
                 }
-                this.die()
-
-
             }
-            else {
-                this.move()
-            }
+            this.die()
 
-        
+
+        }
+        else {
+            this.move()
+        }
+
+
     }
     die() {
         matrix[this.y][this.x] = 0
