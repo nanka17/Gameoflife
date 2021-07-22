@@ -28,7 +28,7 @@ xotArr = []
 
 bombArr = []
 
-var weather 
+
 
 
 Grass = require("./grass")
@@ -151,14 +151,30 @@ function generator(matLen, gr, grEat, eat, lava, dem, xt, bomb) {
 
 matrix = generator(30, 50, 5, 4, 20, 10, 30, 6)
 
-io.sockets.emit('send matrix', matrix)
-io.sockets.emit('send grass', grassArr)
-io.sockets.emit('send grassEater', grassEaterArr)
-io.sockets.emit('send eater', eaterArr)
-io.sockets.emit('send demon', demonArr)
-io.sockets.emit('send lava', lavaArr)
-io.sockets.emit('send xot', xotArr)
-io.sockets.emit('send bomb', bombArr)
+// io.sockets.emit('send matrix', matrix)
+// io.sockets.emit('send grass', grassArr)
+// io.sockets.emit('send grassEater', grassEaterArr)
+// io.sockets.emit('send eater', eaterArr)
+// io.sockets.emit('send demon', demonArr)
+// io.sockets.emit('send lava', lavaArr)
+// io.sockets.emit('send xot', xotArr)
+// io.sockets.emit('send bomb', bombArr)
+
+
+weath = "summer"
+
+setInterval(function(){
+    // console.log(weath);
+    
+    if(weath == "summer") weath = "autumn"
+    else if (weath == "autumn") weath = "winter"
+    else if (weath == "winter") weath= "spring"
+    else if (weath == "spring") weath="summer"
+
+    io.sockets.emit('send weather', weath)
+
+}, 3000)
+
 
 function game() {
     for (var i in grassArr) {
@@ -194,19 +210,19 @@ function game() {
     }
     io.sockets.emit("send matrix", matrix)
 
-    io.sockets.emit('send grass', grassArr)
+    // io.sockets.emit('send grass', grassArr)
 
-    io.sockets.emit('send grassEater', grassEaterArr)
+    // io.sockets.emit('send grassEater', grassEaterArr)
 
-    io.sockets.emit('send eater', eaterArr)
+    // io.sockets.emit('send eater', eaterArr)
 
-    io.sockets.emit('send demon', demonArr)
+    // io.sockets.emit('send demon', demonArr)
 
-    io.sockets.emit('send lava', lavaArr)
+    // io.sockets.emit('send lava', lavaArr)
 
-    io.sockets.emit('send xot', xotArr)
+    // io.sockets.emit('send xot', xotArr)
 
-    io.sockets.emit('send bomb', bombArr)
+    // io.sockets.emit('send bomb', bombArr)
 
 
 

@@ -8,7 +8,9 @@ function setup() {
 
 }
 
-socket.on("weather", function(data){
+weath = "summer"
+
+socket.on("send weather", function (data) {
     weath = data
 })
 
@@ -25,23 +27,20 @@ function nkarel(matrix) {
                 rect(x * side, y * side, side, side)
             }
             if (obj == 1) {
-                if (weath == "summer"){
-                fill("green");
-                rect(x * side, y * side, side, side)
+                if (weath == "summer") {
+                    fill("green");
                 }
-            else if (weath == "autumn"){
-                fill("#333300");
+                else if (weath == "autumn") {
+                    fill("#333300");
+                }
+                else if (weath == "winter") {
+                    fill("white");
+                }
+                else if (weath == "spring") {
+                    fill("#61bd4f");
+                }
                 rect(x * side, y * side, side, side)
             }
-            else if (weath == "winter"){
-                fill("white");
-                rect(x * side, y * side, side, side)
-            }
-            else if (weath == "spring"){
-                fill("#4dffa61");
-                rect(x * side, y * side, side, side)
-            }
-        }
             else if (obj == 2) {
                 fill("yellow")
                 rect(x * side, y * side, side, side)
@@ -109,5 +108,5 @@ function logBomb(a) {
 // )
 setInterval(
     function () {
-    socket.on('send matrix', nkarel)
-}, 1000)
+        socket.on('send matrix', nkarel)
+    }, 1000)
