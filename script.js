@@ -8,6 +8,10 @@ function setup() {
 
 }
 
+socket.on("weather", function(data){
+    weath = data
+})
+
 
 function nkarel(matrix) {
 
@@ -20,10 +24,24 @@ function nkarel(matrix) {
                 fill("gray");
                 rect(x * side, y * side, side, side)
             }
-            else if (obj == 1) {
+            if (obj == 1) {
+                if (weath == "summer"){
                 fill("green");
                 rect(x * side, y * side, side, side)
+                }
+            else if (weath == "autumn"){
+                fill("#333300");
+                rect(x * side, y * side, side, side)
             }
+            else if (weath == "winter"){
+                fill("white");
+                rect(x * side, y * side, side, side)
+            }
+            else if (weath == "spring"){
+                fill("#4dffa61");
+                rect(x * side, y * side, side, side)
+            }
+        }
             else if (obj == 2) {
                 fill("yellow")
                 rect(x * side, y * side, side, side)
@@ -51,7 +69,6 @@ function nkarel(matrix) {
 
         }
     }
-
 }
 function logGrass(a) {
     console.log(a.length)

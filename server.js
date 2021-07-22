@@ -28,7 +28,7 @@ xotArr = []
 
 bombArr = []
 
-
+var weather 
 
 
 Grass = require("./grass")
