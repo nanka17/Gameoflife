@@ -89,6 +89,8 @@ function createObject(matrix) {
     }
 }
 
+
+
 function generator(matLen, gr, grEat, eat, lava, dem, xt, bomb) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
@@ -149,7 +151,7 @@ function generator(matLen, gr, grEat, eat, lava, dem, xt, bomb) {
     return matrix;
 }
 
-matrix = generator(30, 50, 5, 4, 20, 10, 30, 6)
+matrix = generator(30, 50, 4, 4, 20, 10, 30, 6)
 
 // io.sockets.emit('send matrix', matrix)
 // io.sockets.emit('send grass', grassArr)
@@ -163,13 +165,13 @@ matrix = generator(30, 50, 5, 4, 20, 10, 30, 6)
 
 weath = "summer"
 
-setInterval(function(){
+setInterval(function () {
     // console.log(weath);
-    
-    if(weath == "summer") weath = "autumn"
+
+    if (weath == "summer") weath = "autumn"
     else if (weath == "autumn") weath = "winter"
-    else if (weath == "winter") weath= "spring"
-    else if (weath == "spring") weath="summer"
+    else if (weath == "winter") weath = "spring"
+    else if (weath == "spring") weath = "summer"
 
     io.sockets.emit('send weather', weath)
 
@@ -253,15 +255,29 @@ setInterval(game, 1000)
 
 let flag = true
 
-    io.on('connection', function (socket) {
-       if (flag) { 
-           createObject(matrix)
+io.on('connection', function (socket) {
+    if (flag) {
+        createObject(matrix)
 
-            flag = false
-        }
-       
+         
         
-    })
+        flag = false
+    }
+
+socket.on("add Grass" , addGrass)
+
+    
+
+})
 
 
+function addGrass(){
+    console.log("es avelacnum em xot")
 
+    // ?avelacnel xot gorcoxutyun
+
+    // uxarkenq avelacvac matrix
+
+    // io.sockets.emit("send matrix", matrix)
+
+}

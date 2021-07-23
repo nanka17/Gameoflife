@@ -1,5 +1,7 @@
 var socket = io()
 
+
+
 var side = 30
 
 function setup() {
@@ -8,11 +10,25 @@ function setup() {
 
 }
 
+
+
 weath = "summer"
 
 socket.on("send weather", function (data) {
     weath = data
 })
+
+function addGrass(){
+
+console.log("sokety anuma emit")
+
+    socket.emit('add Grass' )
+  
+}
+
+
+
+    
 
 
 function nkarel(matrix) {
@@ -110,3 +126,7 @@ setInterval(
     function () {
         socket.on('send matrix', nkarel)
     }, 1000)
+
+
+ 
+  
