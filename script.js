@@ -2,10 +2,10 @@ var socket = io()
 
 
 
-var side = 30
+var side = 20
 
 function setup() {
-    createCanvas(30 * side, 30 * side);
+    createCanvas(20 * side, 20 * side);
     background('#acacac');
 
 }
@@ -122,10 +122,10 @@ function logBomb(a) {
 //         
 //     }, 1000
 // )
-setInterval(
-    function () {
-        socket.on('send matrix', nkarel)
-    }, 1000)
+
+
+
+socket.on('send matrix', nkarel)
 
 
  

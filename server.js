@@ -151,8 +151,8 @@ function generator(matLen, gr, grEat, eat, lava, dem, xt, bomb) {
     return matrix;
 }
 
-matrix = generator(30, 50, 4, 4, 20, 10, 30, 6)
-
+matrix = generator(20, 50, 4, 4, 20, 10, 20, 6)
+io.sockets.emit("send matrix", matrix)
 // io.sockets.emit('send matrix', matrix)
 // io.sockets.emit('send grass', grassArr)
 // io.sockets.emit('send grassEater', grassEaterArr)
@@ -257,10 +257,7 @@ let flag = true
 
 io.on('connection', function (socket) {
     if (flag) {
-        createObject(matrix)
-
-         
-        
+        createObject(matrix)           
         flag = false
     }
 
