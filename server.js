@@ -262,19 +262,53 @@ io.on('connection', function (socket) {
     }
 
 socket.on("add Grass" , addGrass)
-
-    
+socket.on("add Eater", addEater);
+socket.on("kill", kill);
 
 })
 
 
 function addGrass(){
-    console.log("es avelacnum em xot")
+    
+    for (var i = 0; i < 7; i++) {
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] == 0) {
+                matrix[y][x] = 1
+                var gr = new Grass(x, y, 1)
+                grassArr.push(gr)
+            }
+        }
 
-    // ?avelacnel xot gorcoxutyun
+    io.sockets.emit("send matrix", matrix)
 
-    // uxarkenq avelacvac matrix
+}
 
-    // io.sockets.emit("send matrix", matrix)
+function addEater() {
+    for (var i = 0; i < 7; i++) {   
+    var x = Math.floor(Math.random() * matrix[0].length)
+    var y = Math.floor(Math.random() * matrix.length)
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 3
+            var ea = new Eater(x, y, 1)
+            eaterArr.push(ea)
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
+}
 
+function kill() {
+    grassArr = [];
+    grassEaterArr = []
+    eaterArr = []
+    demonArr = []
+    lavaArr = []
+    xotArr = []
+    bombArr = []
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            matrix[y][x] = 0;
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
 }

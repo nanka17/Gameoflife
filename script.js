@@ -19,15 +19,19 @@ socket.on("send weather", function (data) {
 })
 
 function addGrass(){
-
-console.log("sokety anuma emit")
-
     socket.emit('add Grass' )
   
 }
 
+function addEater() {
+    socket.emit("add Eater")
+}
 
 
+
+function kill() {
+    socket.emit("kill")
+}
     
 
 
